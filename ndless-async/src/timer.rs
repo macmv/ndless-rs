@@ -17,6 +17,7 @@ use futures_util::pin_mut;
 use futures_util::stream::Stream;
 use futures_util::task::{AtomicWaker, Context, Poll};
 use ndless::alloc::fmt::Formatter;
+use ndless::alloc::vec::Vec;
 use ndless::prelude::*;
 use ndless::timer::{configure_sleep, get_ticks, has_time_passed, Ticks, TICKS_PER_SECOND};
 

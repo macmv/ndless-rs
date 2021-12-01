@@ -14,6 +14,7 @@ use core::time::Duration;
 use crossbeam_queue::ArrayQueue;
 use futures_util::{stream::Stream, task::AtomicWaker, StreamExt};
 use ignore_result::Ignore;
+use ndless::alloc::vec::Vec;
 use ndless::input::{iter_keys, Key};
 use ndless::prelude::*;
 use ndless::timer::{get_ticks, Ticks, TICKS_PER_SECOND};
