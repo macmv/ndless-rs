@@ -58,8 +58,8 @@ pub struct BufReader<R> {
 }
 
 impl<R: Read> BufReader<R> {
-	/// Creates a new `BufReader` with a default buffer capacity. The default is currently 8 KB,
-	/// but may change in the future.
+	/// Creates a new `BufReader` with a default buffer capacity. The default is
+	/// currently 8 KB, but may change in the future.
 	///
 	/// # Examples
 	///
@@ -155,7 +155,8 @@ impl<R> BufReader<R> {
 
 	/// Returns a reference to the internally buffered data.
 	///
-	/// Unlike `fill_buf`, this will not attempt to fill the buffer if it is empty.
+	/// Unlike `fill_buf`, this will not attempt to fill the buffer if it is
+	/// empty.
 	///
 	/// # Examples
 	///
@@ -210,10 +211,11 @@ impl<R> BufReader<R> {
 }
 
 impl<R: Seek> BufReader<R> {
-	/// Seeks relative to the current position. If the new position lies within the buffer,
-	/// the buffer will not be flushed, allowing for more efficient seeks.
-	/// This method does not return the location of the underlying reader, so the caller
-	/// must track this information themselves if it is required.
+	/// Seeks relative to the current position. If the new position lies within
+	/// the buffer, the buffer will not be flushed, allowing for more efficient
+	/// seeks. This method does not return the location of the underlying
+	/// reader, so the caller must track this information themselves if it is
+	/// required.
 	pub fn seek_relative(&mut self, offset: i64) -> io::Result<()> {
 		let pos = self.pos as u64;
 		if offset < 0 {
@@ -314,7 +316,8 @@ impl<R: Seek> Seek for BufReader<R> {
 	/// `.into_inner()` immediately after a seek yields the underlying reader
 	/// at the same position.
 	///
-	/// To seek without discarding the internal buffer, use [`BufReader::seek_relative`].
+	/// To seek without discarding the internal buffer, use
+	/// [`BufReader::seek_relative`].
 	///
 	/// See [`std::io::Seek`] for more details.
 	///
@@ -330,11 +333,11 @@ impl<R: Seek> Seek for BufReader<R> {
 		let result: u64;
 		if let SeekFrom::Current(n) = pos {
 			let remainder = (self.cap - self.pos) as i64;
-			// it should be safe to assume that remainder fits within an i64 as the alternative
-			// means we managed to allocate 8 exbibytes and that's absurd.
-			// But it's not out of the realm of possibility for some weird underlying reader to
-			// support seeking by i64::min_value() so we need to handle underflow when subtracting
-			// remainder.
+			// it should be safe to assume that remainder fits within an i64 as the
+			// alternative means we managed to allocate 8 exbibytes and that's absurd.
+			// But it's not out of the realm of possibility for some weird underlying reader
+			// to support seeking by i64::min_value() so we need to handle underflow when
+			// subtracting remainder.
 			if let Some(offset) = n.checked_sub(remainder) {
 				result = self.inner.seek(SeekFrom::Current(offset))?;
 			} else {
@@ -447,8 +450,8 @@ pub struct BufWriter<W: Write> {
 pub struct IntoInnerError<W>(W, Error);
 
 impl<W: Write> BufWriter<W> {
-	/// Creates a new `BufWriter` with a default buffer capacity. The default is currently 8 KB,
-	/// but may change in the future.
+	/// Creates a new `BufWriter` with a default buffer capacity. The default is
+	/// currently 8 KB, but may change in the future.
 	///
 	/// # Examples
 	///

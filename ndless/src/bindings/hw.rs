@@ -43,8 +43,9 @@ pub fn has_touchpad() -> bool {
 	unsafe { ndless_sys::_is_touchpad() > 0 }
 }
 
-/// flush the data cache and invalidate the instruction and data caches of the processor. Should be
-/// called before loading code dynamically, after a code patch or with self-modifying code.
+/// flush the data cache and invalidate the instruction and data caches of the
+/// processor. Should be called before loading code dynamically, after a code
+/// patch or with self-modifying code.
 pub fn clear_cache() {
 	unsafe { ndless_sys::clear_cache() }
 }

@@ -2,10 +2,10 @@
 
 //! Cross-platform path manipulation.
 //!
-//! This module provides two types, [`PathBuf`] and [`Path`][`Path`] (akin to [`String`]
-//! and [`str`]), for working with paths abstractly. These types are thin wrappers
-//! around [`OsString`] and [`OsStr`] respectively, meaning that they work directly
-//! on strings according to the local platform's path syntax.
+//! This module provides two types, [`PathBuf`] and [`Path`][`Path`] (akin to
+//! [`String`] and [`str`]), for working with paths abstractly. These types are
+//! thin wrappers around [`OsString`] and [`OsStr`] respectively, meaning that
+//! they work directly on strings according to the local platform's path syntax.
 //!
 //! Paths can be parsed into [`Component`]s by iterating over the structure
 //! returned by the [`components`] method on [`Path`]. [`Component`]s roughly
@@ -502,7 +502,8 @@ pub enum Component<'a> {
 	/// [`Prefix`]: enum.Prefix.html
 	Prefix(PrefixComponent<'a>),
 
-	/// The root directory component, appears after any prefix and before anything else.
+	/// The root directory component, appears after any prefix and before
+	/// anything else.
 	///
 	/// It represents a separator that designates that a path starts from root.
 	RootDir,
@@ -683,7 +684,8 @@ impl<'a> Components<'a> {
 		}
 	}
 
-	/// Extracts a slice corresponding to the portion of the path remaining for iteration.
+	/// Extracts a slice corresponding to the portion of the path remaining for
+	/// iteration.
 	///
 	/// # Examples
 	///
@@ -827,7 +829,8 @@ impl fmt::Debug for Iter<'_> {
 }
 
 impl<'a> Iter<'a> {
-	/// Extracts a slice corresponding to the portion of the path remaining for iteration.
+	/// Extracts a slice corresponding to the portion of the path remaining for
+	/// iteration.
 	///
 	/// # Examples
 	///
@@ -1171,8 +1174,8 @@ impl PathBuf {
 	///
 	/// On Windows:
 	///
-	/// * if `path` has a root but no prefix (e.g., `\windows`), it
-	///   replaces everything except for the prefix (if any) of `self`.
+	/// * if `path` has a root but no prefix (e.g., `\windows`), it replaces
+	///   everything except for the prefix (if any) of `self`.
 	/// * if `path` has a prefix but no root, it replaces `self`.
 	///
 	/// # Examples
@@ -1450,7 +1453,8 @@ impl From<PathBuf> for Box<Path> {
 	/// Converts a `PathBuf` into a `Box<Path>`
 	///
 	/// This conversion currently should not allocate memory,
-	/// but this behavior is not guaranteed on all platforms or in all future versions.
+	/// but this behavior is not guaranteed on all platforms or in all future
+	/// versions.
 	fn from(p: PathBuf) -> Box<Path> {
 		p.into_boxed_path()
 	}
@@ -1650,9 +1654,9 @@ impl AsRef<OsStr> for PathBuf {
 /// A slice of a path (akin to [`str`]).
 ///
 /// This type supports a number of operations for inspecting a path, including
-/// breaking the path into its components (separated by `/` on Unix and by either
-/// `/` or `\` on Windows), extracting the file name, determining whether the path
-/// is absolute, and so on.
+/// breaking the path into its components (separated by `/` on Unix and by
+/// either `/` or `\` on Windows), extracting the file name, determining whether
+/// the path is absolute, and so on.
 ///
 /// This is an *unsized* type, meaning that it must always be used behind a
 /// pointer like `&` or [`Box`]. For an owned version of this type,
@@ -1866,7 +1870,8 @@ impl Path {
 	///
 	/// * On Windows, a path has a root if it:
 	///     * has no prefix and begins with a separator, e.g., `\windows`
-	///     * has a prefix followed by a separator, e.g., `c:\windows` but not `c:windows`
+	///     * has a prefix followed by a separator, e.g., `c:\windows` but not
+	///       `c:windows`
 	///     * has any non-disk prefix, e.g., `\\server\share`
 	///
 	/// # Examples
@@ -1914,11 +1919,12 @@ impl Path {
 
 	/// Produces an iterator over `Path` and its ancestors.
 	///
-	/// The iterator will yield the `Path` that is returned if the [`parent`] method is used zero
-	/// or more times. That means, the iterator will yield `&self`, `&self.parent().unwrap()`,
-	/// `&self.parent().unwrap().parent().unwrap()` and so on. If the [`parent`] method returns
-	/// [`None`], the iterator will do likewise. The iterator will always yield at least one value,
-	/// namely `&self`.
+	/// The iterator will yield the `Path` that is returned if the [`parent`]
+	/// method is used zero or more times. That means, the iterator will yield
+	/// `&self`, `&self.parent().unwrap()`, `&self.parent().unwrap().parent().
+	/// unwrap()` and so on. If the [`parent`] method returns [`None`], the
+	/// iterator will do likewise. The iterator will always yield at least one
+	/// value, namely `&self`.
 	///
 	/// # Examples
 	///
@@ -1941,8 +1947,8 @@ impl Path {
 
 	/// Returns the final component of the `Path`, if there is one.
 	///
-	/// If the path is a normal file, this is the file name. If it's the path of a directory, this
-	/// is the directory name.
+	/// If the path is a normal file, this is the file name. If it's the path of
+	/// a directory, this is the directory name.
 	///
 	/// Returns [`None`] if the path terminates in `..`.
 	///
@@ -2068,7 +2074,8 @@ impl Path {
 	///
 	/// * [`None`], if there is no file name;
 	/// * The entire file name if there is no embedded `.`;
-	/// * The entire file name if the file name begins with `.` and has no other `.`s within;
+	/// * The entire file name if the file name begins with `.` and has no other
+	///   `.`s within;
 	/// * Otherwise, the portion of the file name before the final `.`
 	///
 	/// [`None`]: ../../std/option/enum.Option.html#variant.None
@@ -2095,7 +2102,8 @@ impl Path {
 	///
 	/// * [`None`], if there is no file name;
 	/// * [`None`], if there is no embedded `.`;
-	/// * [`None`], if the file name begins with `.` and has no other `.`s within;
+	/// * [`None`], if the file name begins with `.` and has no other `.`s
+	///   within;
 	/// * Otherwise, the portion of the file name after the final `.`
 	///
 	/// [`self.file_name`]: struct.Path.html#method.file_name
@@ -2119,7 +2127,8 @@ impl Path {
 
 	/// Creates an owned [`PathBuf`] with `path` adjoined to `self`.
 	///
-	/// See [`PathBuf::push`] for more details on what it means to adjoin a path.
+	/// See [`PathBuf::push`] for more details on what it means to adjoin a
+	/// path.
 	///
 	/// [`PathBuf`]: struct.PathBuf.html
 	/// [`PathBuf::push`]: struct.PathBuf.html#method.push
@@ -2201,15 +2210,16 @@ impl Path {
 	///
 	/// When parsing the path, there is a small amount of normalization:
 	///
-	/// * Repeated separators are ignored, so `a/b` and `a//b` both have
-	///   `a` and `b` as components.
+	/// * Repeated separators are ignored, so `a/b` and `a//b` both have `a` and
+	///   `b` as components.
 	///
 	/// * Occurrences of `.` are normalized away, except if they are at the
-	///   beginning of the path. For example, `a/./b`, `a/b/`, `a/b/.` and
-	///   `a/b` all have `a` and `b` as components, but `./a/b` starts with
-	///   an additional [`CurDir`] component.
+	///   beginning of the path. For example, `a/./b`, `a/b/`, `a/b/.` and `a/b`
+	///   all have `a` and `b` as components, but `./a/b` starts with an
+	///   additional [`CurDir`] component.
 	///
-	/// * A trailing slash is normalized away, `/a/b` and `/a/b/` are equivalent.
+	/// * A trailing slash is normalized away, `/a/b` and `/a/b/` are
+	///   equivalent.
 	///
 	/// Note that no other normalization takes place; in particular, `a/c`
 	/// and `a/b/../c` are distinct, to account for the possibility that `b`
@@ -2293,8 +2303,8 @@ impl Path {
 
 	/// Queries the file system to get information about a file, directory, etc.
 	///
-	/// This function will traverse symbolic links to query information about the
-	/// destination file.
+	/// This function will traverse symbolic links to query information about
+	/// the destination file.
 	///
 	/// This is an alias to [`fs::metadata`].
 	///
@@ -2334,8 +2344,9 @@ impl Path {
 
 	/// Returns an iterator over the entries within a directory.
 	///
-	/// The iterator will yield instances of [`io::Result`]`<`[`DirEntry`]`>`. New
-	/// errors may be encountered after an iterator is initially constructed.
+	/// The iterator will yield instances of [`io::Result`]`<`[`DirEntry`]`>`.
+	/// New errors may be encountered after an iterator is initially
+	/// constructed.
 	///
 	/// This is an alias to [`fs::read_dir`].
 	///
@@ -2362,11 +2373,12 @@ impl Path {
 
 	/// Returns `true` if the path points at an existing entity.
 	///
-	/// This function will traverse symbolic links to query information about the
-	/// destination file. In case of broken symbolic links this will return `false`.
+	/// This function will traverse symbolic links to query information about
+	/// the destination file. In case of broken symbolic links this will return
+	/// `false`.
 	///
-	/// If you cannot access the directory containing the file, e.g., because of a
-	/// permission error, this will return `false`.
+	/// If you cannot access the directory containing the file, e.g., because of
+	/// a permission error, this will return `false`.
 	///
 	/// # Examples
 	///
@@ -2377,21 +2389,23 @@ impl Path {
 	///
 	/// # See Also
 	///
-	/// This is a convenience function that coerces errors to false. If you want to
-	/// check errors, call [fs::metadata].
+	/// This is a convenience function that coerces errors to false. If you want
+	/// to check errors, call [fs::metadata].
 	///
 	/// [fs::metadata]: ../../std/fs/fn.metadata.html
 	pub fn exists(&self) -> bool {
 		fs::metadata(self).is_ok()
 	}
 
-	/// Returns `true` if the path exists on disk and is pointing at a regular file.
+	/// Returns `true` if the path exists on disk and is pointing at a regular
+	/// file.
 	///
-	/// This function will traverse symbolic links to query information about the
-	/// destination file. In case of broken symbolic links this will return `false`.
+	/// This function will traverse symbolic links to query information about
+	/// the destination file. In case of broken symbolic links this will return
+	/// `false`.
 	///
-	/// If you cannot access the directory containing the file, e.g., because of a
-	/// permission error, this will return `false`.
+	/// If you cannot access the directory containing the file, e.g., because of
+	/// a permission error, this will return `false`.
 	///
 	/// # Examples
 	///
@@ -2403,23 +2417,26 @@ impl Path {
 	///
 	/// # See Also
 	///
-	/// This is a convenience function that coerces errors to false. If you want to
-	/// check errors, call [fs::metadata] and handle its Result. Then call
+	/// This is a convenience function that coerces errors to false. If you want
+	/// to check errors, call [fs::metadata] and handle its Result. Then call
 	/// [fs::Metadata::is_file] if it was Ok.
 	///
 	/// [fs::metadata]: ../../std/fs/fn.metadata.html
-	/// [fs::Metadata::is_file]: ../../std/fs/struct.Metadata.html#method.is_file
+	/// [fs::Metadata::is_file]:
+	/// ../../std/fs/struct.Metadata.html#method.is_file
 	pub fn is_file(&self) -> bool {
 		fs::metadata(self).map(|m| m.is_file()).unwrap_or(false)
 	}
 
-	/// Returns `true` if the path exists on disk and is pointing at a directory.
+	/// Returns `true` if the path exists on disk and is pointing at a
+	/// directory.
 	///
-	/// This function will traverse symbolic links to query information about the
-	/// destination file. In case of broken symbolic links this will return `false`.
+	/// This function will traverse symbolic links to query information about
+	/// the destination file. In case of broken symbolic links this will return
+	/// `false`.
 	///
-	/// If you cannot access the directory containing the file, e.g., because of a
-	/// permission error, this will return `false`.
+	/// If you cannot access the directory containing the file, e.g., because of
+	/// a permission error, this will return `false`.
 	///
 	/// # Examples
 	///
@@ -2431,8 +2448,8 @@ impl Path {
 	///
 	/// # See Also
 	///
-	/// This is a convenience function that coerces errors to false. If you want to
-	/// check errors, call [fs::metadata] and handle its Result. Then call
+	/// This is a convenience function that coerces errors to false. If you want
+	/// to check errors, call [fs::metadata] and handle its Result. Then call
 	/// [fs::Metadata::is_dir] if it was Ok.
 	///
 	/// [fs::metadata]: ../../std/fs/fn.metadata.html

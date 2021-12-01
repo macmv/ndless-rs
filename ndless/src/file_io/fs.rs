@@ -22,8 +22,8 @@ use crate::time::SystemTime;
 /// A reference to an open file on the filesystem.
 ///
 /// An instance of a `File` can be read and/or written depending on what options
-/// it was opened with. Files also implement [`Seek`] to alter the logical cursor
-/// that the file contains internally.
+/// it was opened with. Files also implement [`Seek`] to alter the logical
+/// cursor that the file contains internally.
 ///
 /// Files are automatically closed when they go out of scope.  Errors detected
 /// on closing are ignored by the implementation of `Drop`.  Use the method
@@ -106,9 +106,9 @@ pub struct Metadata(fs_imp::FileAttr);
 /// Iterator over the entries in a directory.
 ///
 /// This iterator is returned from the [`read_dir`] function of this module and
-/// will yield instances of [`io::Result`]`<`[`DirEntry`]`>`. Through a [`DirEntry`]
-/// information like the entry's path and possibly other metadata can be
-/// learned.
+/// will yield instances of [`io::Result`]`<`[`DirEntry`]`>`. Through a
+/// [`DirEntry`] information like the entry's path and possibly other metadata
+/// can be learned.
 ///
 /// # Errors
 ///
@@ -247,10 +247,10 @@ pub fn read<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> {
 
 /// Read the entire contents of a file into a string.
 ///
-/// This is a convenience function for using [`File::open`] and [`read_to_string`]
-/// with fewer imports and without an intermediate variable. It pre-allocates a
-/// buffer based on the file size when available, so it is generally faster than
-/// reading into a string created with `String::new()`.
+/// This is a convenience function for using [`File::open`] and
+/// [`read_to_string`] with fewer imports and without an intermediate variable.
+/// It pre-allocates a buffer based on the file size when available, so it is
+/// generally faster than reading into a string created with `String::new()`.
 ///
 /// [`read_to_string`]: io::Read::read_to_string
 ///
@@ -440,7 +440,8 @@ impl File {
 	///
 	/// # Errors
 	///
-	/// This function will return an error if the file is not opened for writing.
+	/// This function will return an error if the file is not opened for
+	/// writing.
 	///
 	/// # Examples
 	///
@@ -480,9 +481,9 @@ impl File {
 		self.inner.file_attr().map(Metadata)
 	}*/
 
-	/// Creates a new `File` instance that shares the same underlying file handle
-	/// as the existing `File` instance. Reads, writes, and seeks will affect
-	/// both `File` instances simultaneously.
+	/// Creates a new `File` instance that shares the same underlying file
+	/// handle as the existing `File` instance. Reads, writes, and seeks will
+	/// affect both `File` instances simultaneously.
 	///
 	/// # Examples
 	///
@@ -669,9 +670,9 @@ impl OpenOptions {
 	/// Note that setting `.write(true).append(true)` has the same effect as
 	/// setting only `.append(true)`.
 	///
-	/// For most filesystems, the operating system guarantees that all writes are
-	/// atomic: no writes get mangled because another process writes at the same
-	/// time.
+	/// For most filesystems, the operating system guarantees that all writes
+	/// are atomic: no writes get mangled because another process writes at the
+	/// same time.
 	///
 	/// One maybe obvious note when using append-mode: make sure that all data
 	/// that belongs together is written to the file in one operation. This
@@ -680,14 +681,15 @@ impl OpenOptions {
 	/// and calling [`flush()`] when the message is complete.
 	///
 	/// If a file is opened with both read and append access, beware that after
-	/// opening, and after every write, the position for reading may be set at the
-	/// end of the file. So, before writing, save the current position (using
-	/// [`seek`]`(`[`SeekFrom`]`::`[`Current`]`(0))`), and restore it before the next read.
+	/// opening, and after every write, the position for reading may be set at
+	/// the end of the file. So, before writing, save the current position
+	/// (using [`seek`]`(`[`SeekFrom`]`::`[`Current`]`(0))`), and restore it
+	/// before the next read.
 	///
 	/// ## Note
 	///
-	/// This function doesn't create the file if it doesn't exist. Use the [`create`]
-	/// method to do so.
+	/// This function doesn't create the file if it doesn't exist. Use the
+	/// [`create`] method to do so.
 	///
 	/// [`write()`]: OpenOptions::write
 	/// [`flush()`]: Write::flush
@@ -1073,7 +1075,8 @@ impl FromInner<fs_imp::FileAttr> for Metadata {
 }
 
 impl Permissions {
-	/// Returns `true` if these permissions describe a readonly (unwritable) file.
+	/// Returns `true` if these permissions describe a readonly (unwritable)
+	/// file.
 	///
 	/// # Examples
 	///
@@ -1427,7 +1430,8 @@ pub fn metadata<P: AsRef<Path>>(path: P) -> io::Result<Metadata> {
 /// # Platform-specific behavior
 ///
 /// This function currently corresponds to the `rename` function on Unix
-/// and the `MoveFileEx` function with the `MOVEFILE_REPLACE_EXISTING` flag on Windows.
+/// and the `MoveFileEx` function with the `MOVEFILE_REPLACE_EXISTING` flag on
+/// Windows.
 ///
 /// Because of this, the behavior when both `from` and `to` exist differs. On
 /// Unix, if `from` is a directory, `to` must also be an (empty) directory. If
@@ -1482,8 +1486,8 @@ pub fn rename<P: AsRef<Path>, Q: AsRef<Path>>(from: P, to: Q) -> io::Result<()> 
 /// # Platform-specific behavior
 ///
 /// This function currently corresponds to the `open` function in Unix
-/// with `O_RDONLY` for `from` and `O_WRONLY`, `O_CREAT`, and `O_TRUNC` for `to`.
-/// `O_CLOEXEC` is set for returned file descriptors.
+/// with `O_RDONLY` for `from` and `O_WRONLY`, `O_CREAT`, and `O_TRUNC` for
+/// `to`. `O_CLOEXEC` is set for returned file descriptors.
 /// On Windows, this function currently corresponds to `CopyFileEx`. Alternate
 /// NTFS streams are copied but only the size of the main stream is returned by
 /// this function. On MacOS, this function corresponds to `fclonefileat` and
@@ -1499,8 +1503,8 @@ pub fn rename<P: AsRef<Path>, Q: AsRef<Path>>(from: P, to: Q) -> io::Result<()> 
 ///
 /// * The `from` path is not a file.
 /// * The `from` file does not exist.
-/// * The current process does not have the permission rights to access
-///   `from` or write `to`.
+/// * The current process does not have the permission rights to access `from`
+///   or write `to`.
 ///
 /// # Examples
 ///
@@ -1647,10 +1651,10 @@ pub fn create_dir<P: AsRef<Path>>(path: P) -> io::Result<()> {
 /// determined to not exist) are outlined by [`fs::create_dir`].
 ///
 /// Notable exception is made for situations where any of the directories
-/// specified in the `path` could not be created as it was being created concurrently.
-/// Such cases are considered to be successful. That is, calling `create_dir_all`
-/// concurrently from multiple threads or processes is guaranteed not to fail
-/// due to a race condition with itself.
+/// specified in the `path` could not be created as it was being created
+/// concurrently. Such cases are considered to be successful. That is, calling
+/// `create_dir_all` concurrently from multiple threads or processes is
+/// guaranteed not to fail due to a race condition with itself.
 ///
 /// [`fs::create_dir`]: create_dir
 ///
@@ -1705,14 +1709,14 @@ pub fn remove_dir<P: AsRef<Path>>(path: P) -> io::Result<()> {
 /// Removes a directory at this path, after removing all its contents. Use
 /// carefully!
 ///
-/// This function does **not** follow symbolic links and it will simply remove the
-/// symbolic link itself.
+/// This function does **not** follow symbolic links and it will simply remove
+/// the symbolic link itself.
 ///
 /// # Platform-specific behavior
 ///
-/// This function currently corresponds to `opendir`, `lstat`, `rm` and `rmdir` functions on Unix
-/// and the `FindFirstFile`, `GetFileAttributesEx`, `DeleteFile`, and `RemoveDirectory` functions
-/// on Windows.
+/// This function currently corresponds to `opendir`, `lstat`, `rm` and `rmdir`
+/// functions on Unix and the `FindFirstFile`, `GetFileAttributesEx`,
+/// `DeleteFile`, and `RemoveDirectory` functions on Windows.
 /// Note that, this [may change in the future][changes].
 ///
 /// [changes]: ../io/index.html#platform-specific-behavior

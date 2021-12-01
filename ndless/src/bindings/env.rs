@@ -20,8 +20,8 @@ pub type Args = IntoIter<String>;
 /// Returns the arguments which this program was started with.
 ///
 /// The first element is traditionally the path of the executable, but it can be
-/// set to arbitrary text, and may not even exist. This means this property should
-/// not be relied upon for security purposes.
+/// set to arbitrary text, and may not even exist. This means this property
+/// should not be relied upon for security purposes.
 ///
 /// On Unix systems shell usually expands unquoted arguments with glob patterns
 /// (such as `*` and `?`).

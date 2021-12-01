@@ -235,8 +235,8 @@ impl<'a, E: Error + 'a> From<E> for Box<dyn Error + 'a> {
 }
 
 impl<'a, E: Error + Send + Sync + 'a> From<E> for Box<dyn Error + Send + Sync + 'a> {
-	/// Converts a type of [`Error`] + [`Send`] + [`Sync`] into a box of dyn [`Error`] +
-	/// [`Send`] + [`Sync`].
+	/// Converts a type of [`Error`] + [`Send`] + [`Sync`] into a box of dyn
+	/// [`Error`] + [`Send`] + [`Sync`].
 	///
 	/// # Examples
 	///
@@ -564,8 +564,8 @@ impl dyn Error + 'static {
 		}
 	}
 
-	/// Returns some mutable reference to the boxed value if it is of type `T`, or
-	/// `None` if it isn't.
+	/// Returns some mutable reference to the boxed value if it is of type `T`,
+	/// or `None` if it isn't.
 	#[inline]
 	pub fn downcast_mut<T: Error + 'static>(&mut self) -> Option<&mut T> {
 		if self.is::<T>() {

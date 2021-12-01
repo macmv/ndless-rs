@@ -35,14 +35,16 @@ impl Glyph {
 		}
 	}
 
-	/// Return a glyph's ‘control box’. The control box encloses all the outline's points,
-	/// including Bézier control points. Though it coincides with the exact bounding box for most
-	/// glyphs, it can be slightly larger in some situations (like when rotating an outline that
-	/// contains Bézier outside arcs).
+	/// Return a glyph's ‘control box’. The control box encloses all the
+	/// outline's points, including Bézier control points. Though it coincides
+	/// with the exact bounding box for most glyphs, it can be slightly larger
+	/// in some situations (like when rotating an outline that contains Bézier
+	/// outside arcs).
 	///
-	/// Computing the control box is very fast, while getting the bounding box can take much more
-	/// time as it needs to walk over all segments and arcs in the outline. To get the latter, you
-	/// can use the ‘ftbbox’ component, which is dedicated to this single task.
+	/// Computing the control box is very fast, while getting the bounding box
+	/// can take much more time as it needs to walk over all segments and arcs
+	/// in the outline. To get the latter, you can use the ‘ftbbox’ component,
+	/// which is dedicated to this single task.
 	pub fn get_cbox(&self, bbox_mode: ffi::FT_Glyph_BBox_Mode) -> BBox {
 		let mut acbox = ffi::FT_BBox {
 			xMin: 0,
@@ -120,16 +122,17 @@ impl Glyph {
 		unsafe { (*self.raw).advance.y as isize }
 	}
 
-	/// An enumeration type used to describe the format of a given glyph image. Note that this
-	/// version of FreeType only supports two image formats, even though future font drivers will
-	/// be able to register their own format.
+	/// An enumeration type used to describe the format of a given glyph image.
+	/// Note that this version of FreeType only supports two image formats, even
+	/// though future font drivers will be able to register their own format.
 	#[inline(always)]
 	pub fn format(&self) -> ffi::FT_Glyph_Format {
 		unsafe { (*self.raw).format }
 	}
 
-	/// Get the underlying c glyph struct (The system actually calls this a GlyphRec because it can
-	/// be a different struct in different circumstances)
+	/// Get the underlying c glyph struct (The system actually calls this a
+	/// GlyphRec because it can be a different struct in different
+	/// circumstances)
 	#[inline(always)]
 	pub fn raw(&self) -> &ffi::FT_GlyphRec {
 		unsafe { &*self.raw }

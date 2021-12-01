@@ -1,6 +1,6 @@
 //! # Serial output
-//! This module contains tools to output to the serial port. Also, take a look at
-//! [io::stdout](crate::io::stdout).
+//! This module contains tools to output to the serial port. Also, take a look
+//! at [io::stdout](crate::io::stdout).
 
 use core::fmt::Arguments;
 

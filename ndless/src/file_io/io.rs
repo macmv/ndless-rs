@@ -31,8 +31,8 @@
 //! }
 //! ```
 //!
-//! [`Read`] and [`Write`] are so important, implementors of the two traits have a
-//! nickname: readers and writers. So you'll sometimes see 'a reader' instead
+//! [`Read`] and [`Write`] are so important, implementors of the two traits have
+//! a nickname: readers and writers. So you'll sometimes see 'a reader' instead
 //! of 'a type that implements the [`Read`] trait'. Much easier!
 //!
 //! ## Seek and BufRead
@@ -63,15 +63,16 @@
 //! }
 //! ```
 //!
-//! [`BufRead`] uses an internal buffer to provide a number of other ways to read, but
-//! to show it off, we'll need to talk about buffers in general. Keep reading!
+//! [`BufRead`] uses an internal buffer to provide a number of other ways to
+//! read, but to show it off, we'll need to talk about buffers in general. Keep
+//! reading!
 //!
 //! ## BufReader and BufWriter
 //!
-//! Byte-based interfaces are unwieldy and can be inefficient, as we'd need to be
-//! making near-constant calls to the operating system. To help with this,
-//! `std::io` comes with two structs, [`BufReader`] and [`BufWriter`], which wrap
-//! readers and writers. The wrapper uses a buffer, reducing the number of
+//! Byte-based interfaces are unwieldy and can be inefficient, as we'd need to
+//! be making near-constant calls to the operating system. To help with this,
+//! `std::io` comes with two structs, [`BufReader`] and [`BufWriter`], which
+//! wrap readers and writers. The wrapper uses a buffer, reducing the number of
 //! calls and providing nicer methods for accessing exactly what you want.
 //!
 //! For example, [`BufReader`] works with the [`BufRead`] trait to add extra
@@ -96,8 +97,8 @@
 //! }
 //! ```
 //!
-//! [`BufWriter`] doesn't add any new ways of writing; it just buffers every call
-//! to [`write`][`Write::write`]:
+//! [`BufWriter`] doesn't add any new ways of writing; it just buffers every
+//! call to [`write`][`Write::write`]:
 //!
 //! ```no_run
 //! use std::io;
@@ -188,9 +189,9 @@
 //!
 //! ## Functions
 //!
-//! There are a number of [functions][functions-list] that offer access to various
-//! features. For example, we can use three of these functions to copy everything
-//! from standard input to standard output:
+//! There are a number of [functions][functions-list] that offer access to
+//! various features. For example, we can use three of these functions to copy
+//! everything from standard input to standard output:
 //!
 //! ```no_run
 //! use std::io;
@@ -207,8 +208,8 @@
 //!
 //! Last, but certainly not least, is [`io::Result`]. This type is used
 //! as the return type of many `std::io` functions that can cause an error, and
-//! can be returned from your own functions as well. Many of the examples in this
-//! module use the [`?` operator]:
+//! can be returned from your own functions as well. Many of the examples in
+//! this module use the [`?` operator]:
 //!
 //! ```
 //! use std::io;
@@ -224,19 +225,20 @@
 //! }
 //! ```
 //!
-//! The return type of `read_input()`, [`io::Result<()>`][`io::Result`], is a very
-//! common type for functions which don't have a 'real' return value, but do want to
-//! return errors if they happen. In this case, the only purpose of this function is
-//! to read the line and print it, so we use `()`.
+//! The return type of `read_input()`, [`io::Result<()>`][`io::Result`], is a
+//! very common type for functions which don't have a 'real' return value, but
+//! do want to return errors if they happen. In this case, the only purpose of
+//! this function is to read the line and print it, so we use `()`.
 //!
 //! ## Platform-specific behavior
 //!
-//! Many I/O functions throughout the standard library are documented to indicate
-//! what various library or syscalls they are delegated to. This is done to help
-//! applications both understand what's happening under the hood as well as investigate
-//! any possibly unclear semantics. Note, however, that this is informative, not a binding
-//! contract. The implementation of many of these functions are subject to change over
-//! time and may call fewer or more syscalls/library functions.
+//! Many I/O functions throughout the standard library are documented to
+//! indicate what various library or syscalls they are delegated to. This is
+//! done to help applications both understand what's happening under the hood as
+//! well as investigate any possibly unclear semantics. Note, however, that this
+//! is informative, not a binding contract. The implementation of many of these
+//! functions are subject to change over time and may call fewer or more
+//! syscalls/library functions.
 //!
 //! [`Read`]: trait.Read.html
 //! [`Write`]: trait.Write.html
@@ -436,11 +438,11 @@ impl Write for Stdout {
 ///
 /// Implementors of the `Read` trait are called 'readers'.
 ///
-/// Readers are defined by one required method, [`read()`]. Each call to [`read()`]
-/// will attempt to pull bytes from this source into a provided buffer. A
-/// number of other methods are implemented in terms of [`read()`], giving
-/// implementors a number of ways to read bytes while only needing to implement
-/// a single method.
+/// Readers are defined by one required method, [`read()`]. Each call to
+/// [`read()`] will attempt to pull bytes from this source into a provided
+/// buffer. A number of other methods are implemented in terms of [`read()`],
+/// giving implementors a number of ways to read bytes while only needing to
+/// implement a single method.
 ///
 /// Readers are intended to be composable with one another. Many implementors
 /// throughout [`std::io`] take and provide types which implement the `Read`
@@ -511,8 +513,8 @@ pub trait Read {
 	///
 	/// If the return value of this method is [`Ok(n)`], then it must be
 	/// guaranteed that `0 <= n <= buf.len()`. A nonzero `n` value indicates
-	/// that the buffer `buf` has been filled in with `n` bytes of data from this
-	/// source. If `n` is `0`, then it can indicate one of two scenarios:
+	/// that the buffer `buf` has been filled in with `n` bytes of data from
+	/// this source. If `n` is `0`, then it can indicate one of two scenarios:
 	///
 	/// 1. This reader has reached its "end of file" and will likely no longer
 	///    be able to produce bytes. Note that this does not mean that the
@@ -530,8 +532,8 @@ pub trait Read {
 	/// variant will be returned. If an error is returned then it must be
 	/// guaranteed that no bytes were read.
 	///
-	/// An error of the [`ErrorKind::Interrupted`] kind is non-fatal and the read
-	/// operation should be retried if there is nothing else to do.
+	/// An error of the [`ErrorKind::Interrupted`] kind is non-fatal and the
+	/// read operation should be retried if there is nothing else to do.
 	///
 	/// # Examples
 	///
@@ -539,8 +541,9 @@ pub trait Read {
 	///
 	/// [`Err`]: ../../std/result/enum.Result.html#variant.Err
 	/// [`Ok(n)`]: ../../std/result/enum.Result.html#variant.Ok
-	/// [`ErrorKind::Interrupted`]: ../../std/io/enum.ErrorKind.html#variant.Interrupted
-	/// [`File`]: ../fs/struct.File.html
+	/// [`ErrorKind::Interrupted`]:
+	/// ../../std/io/enum.ErrorKind.html#variant.Interrupted [`File`]: ../fs/
+	/// struct.File.html
 	///
 	/// ```no_run
 	/// use std::io;
@@ -604,8 +607,8 @@ pub trait Read {
 	/// Read all bytes until EOF in this source, placing them into `buf`.
 	///
 	/// All bytes read from this source will be appended to the specified buffer
-	/// `buf`. This function will continuously call [`read()`] to append more data to
-	/// `buf` until [`read()`] returns either [`Ok(0)`] or an error of
+	/// `buf`. This function will continuously call [`read()`] to append more
+	/// data to `buf` until [`read()`] returns either [`Ok(0)`] or an error of
 	/// non-[`ErrorKind::Interrupted`] kind.
 	///
 	/// If successful, this function will return the total number of bytes read.
@@ -626,8 +629,9 @@ pub trait Read {
 	///
 	/// [`read()`]: trait.Read.html#tymethod.read
 	/// [`Ok(0)`]: ../../std/result/enum.Result.html#variant.Ok
-	/// [`ErrorKind::Interrupted`]: ../../std/io/enum.ErrorKind.html#variant.Interrupted
-	/// [`File`]: ../fs/struct.File.html
+	/// [`ErrorKind::Interrupted`]:
+	/// ../../std/io/enum.ErrorKind.html#variant.Interrupted [`File`]: ../fs/
+	/// struct.File.html
 	///
 	/// ```no_run
 	/// use std::io;
@@ -722,8 +726,9 @@ pub trait Read {
 	/// will continue.
 	///
 	/// If this function encounters an "end of file" before completely filling
-	/// the buffer, it returns an error of the kind [`ErrorKind::UnexpectedEof`].
-	/// The contents of `buf` are unspecified in this case.
+	/// the buffer, it returns an error of the kind
+	/// [`ErrorKind::UnexpectedEof`]. The contents of `buf` are unspecified in
+	/// this case.
 	///
 	/// If any other read error is encountered then this function immediately
 	/// returns. The contents of `buf` are unspecified in this case.
@@ -737,8 +742,9 @@ pub trait Read {
 	/// [`File`]s implement `Read`:
 	///
 	/// [`File`]: ../fs/struct.File.html
-	/// [`ErrorKind::Interrupted`]: ../../std/io/enum.ErrorKind.html#variant.Interrupted
-	/// [`ErrorKind::UnexpectedEof`]: ../../std/io/enum.ErrorKind.html#variant.UnexpectedEof
+	/// [`ErrorKind::Interrupted`]:
+	/// ../../std/io/enum.ErrorKind.html#variant.Interrupted [`ErrorKind::
+	/// UnexpectedEof`]: ../../std/io/enum.ErrorKind.html#variant.UnexpectedEof
 	///
 	/// ```no_run
 	/// use std::io;
@@ -1113,8 +1119,8 @@ pub trait Write {
 	/// any wrapped object.
 	///
 	/// Calls to `write` are not guaranteed to block waiting for data to be
-	/// written, and a write which would otherwise block can be indicated through
-	/// an [`Err`] variant.
+	/// written, and a write which would otherwise block can be indicated
+	/// through an [`Err`] variant.
 	///
 	/// If the return value is [`Ok(n)`] then it must be guaranteed that
 	/// `0 <= n <= buf.len()`. A return value of `0` typically means that the
@@ -1135,7 +1141,8 @@ pub trait Write {
 	///
 	/// [`Err`]: ../../std/result/enum.Result.html#variant.Err
 	/// [`Ok(n)`]:  ../../std/result/enum.Result.html#variant.Ok
-	/// [`ErrorKind::Interrupted`]: ../../std/io/enum.ErrorKind.html#variant.Interrupted
+	/// [`ErrorKind::Interrupted`]:
+	/// ../../std/io/enum.ErrorKind.html#variant.Interrupted
 	///
 	/// # Examples
 	///
@@ -1199,16 +1206,17 @@ pub trait Write {
 	/// to be written or an error of non-[`ErrorKind::Interrupted`] kind is
 	/// returned. This method will not return until the entire buffer has been
 	/// successfully written or such an error occurs. The first error that is
-	/// not of [`ErrorKind::Interrupted`] kind generated from this method will be
-	/// returned.
+	/// not of [`ErrorKind::Interrupted`] kind generated from this method will
+	/// be returned.
 	///
 	/// # Errors
 	///
 	/// This function will return the first error of
 	/// non-[`ErrorKind::Interrupted`] kind that [`write`] returns.
 	///
-	/// [`ErrorKind::Interrupted`]: ../../std/io/enum.ErrorKind.html#variant.Interrupted
-	/// [`write`]: #tymethod.write
+	/// [`ErrorKind::Interrupted`]:
+	/// ../../std/io/enum.ErrorKind.html#variant.Interrupted [`write`]:
+	/// #tymethod.write
 	///
 	/// # Examples
 	///
@@ -1572,7 +1580,6 @@ fn read_until<R: BufRead + ?Sized>(r: &mut R, delim: u8, buf: &mut Vec<u8>) -> R
 ///     Ok(())
 /// }
 /// ```
-///
 
 pub trait BufRead: Read {
 	/// Returns the contents of the internal buffer, filling it with more data
@@ -1649,8 +1656,8 @@ pub trait BufRead: Read {
 	///
 	/// # Errors
 	///
-	/// This function will ignore all instances of [`ErrorKind::Interrupted`] and
-	/// will otherwise return any errors returned by [`fill_buf`].
+	/// This function will ignore all instances of [`ErrorKind::Interrupted`]
+	/// and will otherwise return any errors returned by [`fill_buf`].
 	///
 	/// If an I/O error is encountered then all bytes read so far will be
 	/// present in `buf` and its length will have been adjusted appropriately.
@@ -1806,8 +1813,8 @@ pub trait BufRead: Read {
 	/// Returns an iterator over the lines of this reader.
 	///
 	/// The iterator returned from this function will yield instances of
-	/// [`io::Result`]`<`[`String`]`>`. Each string returned will *not* have a newline
-	/// byte (the 0xA byte) or CRLF (0xD, 0xA bytes) at the end.
+	/// [`io::Result`]`<`[`String`]`>`. Each string returned will *not* have a
+	/// newline byte (the 0xA byte) or CRLF (0xD, 0xA bytes) at the end.
 	///
 	/// [`io::Result`]: type.Result.html
 	/// [`String`]: ../string/struct.String.html
@@ -1834,7 +1841,8 @@ pub trait BufRead: Read {
 	///
 	/// # Errors
 	///
-	/// Each line of the iterator has the same error semantics as [`BufRead::read_line`].
+	/// Each line of the iterator has the same error semantics as
+	/// [`BufRead::read_line`].
 	///
 	/// [`BufRead::read_line`]: trait.BufRead.html#method.read_line
 
@@ -2016,8 +2024,8 @@ impl<T> Take<T> {
 	///
 	/// # Note
 	///
-	/// This instance may reach `EOF` after reading fewer bytes than indicated by
-	/// this method if the underlying [`Read`] instance reaches EOF.
+	/// This instance may reach `EOF` after reading fewer bytes than indicated
+	/// by this method if the underlying [`Read`] instance reaches EOF.
 	///
 	/// [`Read`]: ../../std/io/trait.Read.html
 	///

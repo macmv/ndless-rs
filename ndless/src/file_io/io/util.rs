@@ -47,12 +47,11 @@ where
 	let mut buf = MaybeUninit::<[u8; super::DEFAULT_BUF_SIZE]>::uninit();
 	// FIXME: #42788
 	//
-	//   - This creates a (mut) reference to a slice of
-	//     _uninitialized_ integers, which is **undefined behavior**
+	//   - This creates a (mut) reference to a slice of _uninitialized_ integers,
+	//     which is **undefined behavior**
 	//
-	//   - Only the standard library gets to soundly "ignore" this,
-	//     based on its privileged knowledge of unstable rustc
-	//     internals;
+	//   - Only the standard library gets to soundly "ignore" this, based on its
+	//     privileged knowledge of unstable rustc internals;
 	unsafe {
 		reader.initializer().initialize(buf.assume_init_mut());
 	}
@@ -127,7 +126,8 @@ impl fmt::Debug for Empty {
 	}
 }
 
-/// A reader which yields one byte over and over and over and over and over and...
+/// A reader which yields one byte over and over and over and over and over
+/// and...
 ///
 /// This struct is generally created by calling [`repeat`][repeat]. Please
 /// see the documentation of `repeat()` for more details.

@@ -1,6 +1,7 @@
 //! Getting input from th keypad and touchpad
 //!
-//! This contains functionality to get keys pressed, as well as touchpad information.
+//! This contains functionality to get keys pressed, as well as touchpad
+//! information.
 
 use crate::alloc::borrow::Borrow;
 use crate::bindings::input::raw_keys::*;
@@ -81,8 +82,8 @@ pub enum Key {
 	/// Under the EE, above the comma, to the left of the H
 	Pi,
 	Plus,
-	/// Above the flag, to the right of the G. It has a question mark, exclamation mark, and
-	/// a rightwards arrow.
+	/// Above the flag, to the right of the G. It has a question mark,
+	/// exclamation mark, and a rightwards arrow.
 	QuestionExclamation,
 	Return,
 	RightParenthesis,
@@ -449,7 +450,8 @@ pub fn is_key_pressed(key: impl Borrow<Key>) -> bool {
 		)
 }
 
-/// Returns true if any buttons are currently pressed, including pushing the touchpad.
+/// Returns true if any buttons are currently pressed, including pushing the
+/// touchpad.
 pub fn any_key_pressed() -> bool {
 	unsafe { ndless_sys::any_key_pressed() > 0 }
 }
@@ -490,7 +492,8 @@ pub mod touchpad {
 	impl From<touchpad_report> for TouchpadReport {
 		fn from(report: touchpad_report) -> Self {
 			Self {
-				contact: report.contact > 0, // A C bool is often represented as a char with a nonzero value
+				contact: report.contact > 0, /* A C bool is often represented as a char with a
+				                              * nonzero value */
 				proximity: report.proximity,
 				x: report.x,
 				y: report.y,

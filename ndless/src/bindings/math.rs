@@ -491,7 +491,8 @@ pub trait Float: Sized {
 	/// ```
 	fn atan(self) -> Self;
 
-	/// Computes the four quadrant arctangent of `self` (`y`) and `other` (`x`) in radians.
+	/// Computes the four quadrant arctangent of `self` (`y`) and `other` (`x`)
+	/// in radians.
 	///
 	/// * `x = 0`, `y = 0`: `0`
 	/// * `x >= 0`: `arctan(y/x)` -> `[-pi/2, pi/2]`

@@ -50,9 +50,9 @@ pub struct Library {
 }
 
 impl Library {
-	/// This function is used to create a new FreeType library instance and add the default
-	/// modules. It returns a struct encapsulating the freetype library. The library is correctly
-	/// discarded when the struct is dropped.
+	/// This function is used to create a new FreeType library instance and add
+	/// the default modules. It returns a struct encapsulating the freetype
+	/// library. The library is correctly discarded when the struct is dropped.
 	pub fn init() -> FtResult<Self> {
 		let mut raw = null_mut();
 
@@ -67,8 +67,8 @@ impl Library {
 		}
 	}
 
-	/// Open a font file using its pathname. `face_index` should be 0 if there is only 1 font
-	/// in the file.
+	/// Open a font file using its pathname. `face_index` should be 0 if there
+	/// is only 1 font in the file.
 	pub fn new_face(&self, path: impl Into<String>, face_index: isize) -> FtResult<Face> {
 		let mut face = null_mut();
 

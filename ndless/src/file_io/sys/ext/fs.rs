@@ -310,7 +310,8 @@ pub trait MetadataExt {
 	/// ```
 
 	fn atime(&self) -> i64;
-	/// Returns the last access time of the file, in nanoseconds since [`atime`].
+	/// Returns the last access time of the file, in nanoseconds since
+	/// [`atime`].
 	///
 	/// [`atime`]: #tymethod.atime
 	///
@@ -329,7 +330,8 @@ pub trait MetadataExt {
 	/// ```
 
 	fn atime_nsec(&self) -> i64;
-	/// Returns the last modification time of the file, in seconds since Unix Epoch.
+	/// Returns the last modification time of the file, in seconds since Unix
+	/// Epoch.
 	///
 	/// # Examples
 	///
@@ -346,7 +348,8 @@ pub trait MetadataExt {
 	/// ```
 
 	fn mtime(&self) -> i64;
-	/// Returns the last modification time of the file, in nanoseconds since [`mtime`].
+	/// Returns the last modification time of the file, in nanoseconds since
+	/// [`mtime`].
 	///
 	/// [`mtime`]: #tymethod.mtime
 	///
@@ -365,7 +368,8 @@ pub trait MetadataExt {
 	/// ```
 
 	fn mtime_nsec(&self) -> i64;
-	/// Returns the last status change time of the file, in seconds since Unix Epoch.
+	/// Returns the last status change time of the file, in seconds since Unix
+	/// Epoch.
 	///
 	/// # Examples
 	///
@@ -382,7 +386,8 @@ pub trait MetadataExt {
 	/// ```
 
 	fn ctime(&self) -> i64;
-	/// Returns the last status change time of the file, in nanoseconds since [`ctime`].
+	/// Returns the last status change time of the file, in nanoseconds since
+	/// [`ctime`].
 	///
 	/// [`ctime`]: #tymethod.ctime
 	///

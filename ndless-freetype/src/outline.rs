@@ -62,8 +62,8 @@ impl<'a> CurveIterator<'a> {
 		unsafe { &*self.start_point }
 	}
 
-	// Retrieves the point at offset i from the current point. Note that contours implicitly repeat their
-	// first point at the end.
+	// Retrieves the point at offset i from the current point. Note that contours
+	// implicitly repeat their first point at the end.
 	unsafe fn pt(&self, i: isize) -> Vector {
 		if self.idx + i < self.length {
 			*self.start_point.offset(self.idx + i)

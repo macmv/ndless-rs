@@ -137,7 +137,8 @@ pub mod fs {
 		/// ```
 
 		fn st_gid(&self) -> u32;
-		/// Returns the device ID that this file represents. Only relevant for special file.
+		/// Returns the device ID that this file represents. Only relevant for
+		/// special file.
 		///
 		/// # Examples
 		///
@@ -154,10 +155,11 @@ pub mod fs {
 		/// ```
 
 		fn st_rdev(&self) -> u64;
-		/// Returns the size of the file (if it is a regular file or a symbolic link) in bytes.
+		/// Returns the size of the file (if it is a regular file or a symbolic
+		/// link) in bytes.
 		///
-		/// The size of a symbolic link is the length of the pathname it contains,
-		/// without a terminating null byte.
+		/// The size of a symbolic link is the length of the pathname it
+		/// contains, without a terminating null byte.
 		///
 		/// # Examples
 		///
@@ -174,7 +176,8 @@ pub mod fs {
 		/// ```
 
 		fn st_size(&self) -> u64;
-		/// Returns the last access time of the file, in seconds since Unix Epoch.
+		/// Returns the last access time of the file, in seconds since Unix
+		/// Epoch.
 		///
 		/// # Examples
 		///
@@ -191,7 +194,8 @@ pub mod fs {
 		/// ```
 
 		fn st_atime(&self) -> i64;
-		/// Returns the last access time of the file, in nanoseconds since [`st_atime`].
+		/// Returns the last access time of the file, in nanoseconds since
+		/// [`st_atime`].
 		///
 		/// [`st_atime`]: #tymethod.st_atime
 		///
@@ -210,7 +214,8 @@ pub mod fs {
 		/// ```
 
 		fn st_atime_nsec(&self) -> i64;
-		/// Returns the last modification time of the file, in seconds since Unix Epoch.
+		/// Returns the last modification time of the file, in seconds since
+		/// Unix Epoch.
 		///
 		/// # Examples
 		///
@@ -227,7 +232,8 @@ pub mod fs {
 		/// ```
 
 		fn st_mtime(&self) -> i64;
-		/// Returns the last modification time of the file, in nanoseconds since [`st_mtime`].
+		/// Returns the last modification time of the file, in nanoseconds since
+		/// [`st_mtime`].
 		///
 		/// [`st_mtime`]: #tymethod.st_mtime
 		///
@@ -246,7 +252,8 @@ pub mod fs {
 		/// ```
 
 		fn st_mtime_nsec(&self) -> i64;
-		/// Returns the last status change time of the file, in seconds since Unix Epoch.
+		/// Returns the last status change time of the file, in seconds since
+		/// Unix Epoch.
 		///
 		/// # Examples
 		///
@@ -263,7 +270,8 @@ pub mod fs {
 		/// ```
 
 		fn st_ctime(&self) -> i64;
-		/// Returns the last status change time of the file, in nanoseconds since [`st_ctime`].
+		/// Returns the last status change time of the file, in nanoseconds
+		/// since [`st_ctime`].
 		///
 		/// [`st_ctime`]: #tymethod.st_ctime
 		///

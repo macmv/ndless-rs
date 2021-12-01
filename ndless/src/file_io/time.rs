@@ -68,14 +68,15 @@ pub struct Instant(time::Instant);
 /// earlier `SystemTime`!
 ///
 /// Consequently, comparing two `SystemTime` instances to learn about the
-/// duration between them returns a [`Result`] instead of an infallible [`Duration`]
-/// to indicate that this sort of time drift may happen and needs to be handled.
+/// duration between them returns a [`Result`] instead of an infallible
+/// [`Duration`] to indicate that this sort of time drift may happen and needs
+/// to be handled.
 ///
 /// Although a `SystemTime` cannot be directly inspected, the [`UNIX_EPOCH`]
 /// constant is provided in this module as an anchor in time to learn
 /// information about a `SystemTime`. By calculating the duration from this
-/// fixed point in time, a `SystemTime` can be converted to a human-readable time,
-/// or perhaps some other string representation.
+/// fixed point in time, a `SystemTime` can be converted to a human-readable
+/// time, or perhaps some other string representation.
 ///
 /// The size of a `SystemTime` struct may vary depending on the target operating
 /// system.
@@ -238,17 +239,17 @@ impl Instant {
 		Instant::now() - *self
 	}
 
-	/// Returns `Some(t)` where `t` is the time `self + duration` if `t` can be represented as
-	/// `Instant` (which means it's inside the bounds of the underlying data structure), `None`
-	/// otherwise.
+	/// Returns `Some(t)` where `t` is the time `self + duration` if `t` can be
+	/// represented as `Instant` (which means it's inside the bounds of the
+	/// underlying data structure), `None` otherwise.
 
 	pub fn checked_add(&self, duration: Duration) -> Option<Instant> {
 		self.0.checked_add_duration(&duration).map(Instant)
 	}
 
-	/// Returns `Some(t)` where `t` is the time `self - duration` if `t` can be represented as
-	/// `Instant` (which means it's inside the bounds of the underlying data structure), `None`
-	/// otherwise.
+	/// Returns `Some(t)` where `t` is the time `self - duration` if `t` can be
+	/// represented as `Instant` (which means it's inside the bounds of the
+	/// underlying data structure), `None` otherwise.
 
 	pub fn checked_sub(&self, duration: Duration) -> Option<Instant> {
 		self.0.checked_sub_duration(&duration).map(Instant)
@@ -260,8 +261,9 @@ impl Add<Duration> for Instant {
 
 	/// # Panics
 	///
-	/// This function may panic if the resulting point in time cannot be represented by the
-	/// underlying data structure. See [`checked_add`] for a version without panic.
+	/// This function may panic if the resulting point in time cannot be
+	/// represented by the underlying data structure. See [`checked_add`] for a
+	/// version without panic.
 	///
 	/// [`checked_add`]: ../../std/time/struct.Instant.html#method.checked_add
 	fn add(self, other: Duration) -> Instant {
@@ -306,14 +308,14 @@ impl fmt::Debug for Instant {
 }
 
 impl SystemTime {
-	/// An anchor in time which can be used to create new `SystemTime` instances or
-	/// learn about where in time a `SystemTime` lies.
+	/// An anchor in time which can be used to create new `SystemTime` instances
+	/// or learn about where in time a `SystemTime` lies.
 	///
-	/// This constant is defined to be "1970-01-01 00:00:00 UTC" on all systems with
-	/// respect to the system clock. Using `duration_since` on an existing
+	/// This constant is defined to be "1970-01-01 00:00:00 UTC" on all systems
+	/// with respect to the system clock. Using `duration_since` on an existing
 	/// `SystemTime` instance can tell how far away from this point in time a
-	/// measurement lies, and using `UNIX_EPOCH + duration` can be used to create a
-	/// `SystemTime` instance to represent another fixed point in time.
+	/// measurement lies, and using `UNIX_EPOCH + duration` can be used to
+	/// create a `SystemTime` instance to represent another fixed point in time.
 	///
 	/// # Examples
 	///
@@ -348,8 +350,9 @@ impl SystemTime {
 	/// guaranteed to always be before later measurements (due to anomalies such
 	/// as the system clock being adjusted either forwards or backwards).
 	///
-	/// If successful, [`Ok`]`(`[`Duration`]`)` is returned where the duration represents
-	/// the amount of time elapsed from the specified measurement to this one.
+	/// If successful, [`Ok`]`(`[`Duration`]`)` is returned where the duration
+	/// represents the amount of time elapsed from the specified measurement to
+	/// this one.
 	///
 	/// Returns an [`Err`] if `earlier` is later than `self`, and the error
 	/// contains how far from `self` the time is.
@@ -377,9 +380,9 @@ impl SystemTime {
 	///
 	/// This function may fail as the underlying system clock is susceptible to
 	/// drift and updates (e.g., the system clock could go backwards), so this
-	/// function may not always succeed. If successful, [`Ok`]`(`[`Duration`]`)` is
-	/// returned where the duration represents the amount of time elapsed from
-	/// this time measurement to the current time.
+	/// function may not always succeed. If successful, [`Ok`]`(`[`Duration`]`)`
+	/// is returned where the duration represents the amount of time elapsed
+	/// from this time measurement to the current time.
 	///
 	/// Returns an [`Err`] if `self` is later than the current system time, and
 	/// the error contains how far from the current system time `self` is.
@@ -404,17 +407,17 @@ impl SystemTime {
 		SystemTime::now().duration_since(*self)
 	}
 
-	/// Returns `Some(t)` where `t` is the time `self + duration` if `t` can be represented as
-	/// `SystemTime` (which means it's inside the bounds of the underlying data structure), `None`
-	/// otherwise.
+	/// Returns `Some(t)` where `t` is the time `self + duration` if `t` can be
+	/// represented as `SystemTime` (which means it's inside the bounds of the
+	/// underlying data structure), `None` otherwise.
 
 	pub fn checked_add(&self, duration: Duration) -> Option<SystemTime> {
 		self.0.checked_add_duration(&duration).map(SystemTime)
 	}
 
-	/// Returns `Some(t)` where `t` is the time `self - duration` if `t` can be represented as
-	/// `SystemTime` (which means it's inside the bounds of the underlying data structure), `None`
-	/// otherwise.
+	/// Returns `Some(t)` where `t` is the time `self - duration` if `t` can be
+	/// represented as `SystemTime` (which means it's inside the bounds of the
+	/// underlying data structure), `None` otherwise.
 
 	pub fn checked_sub(&self, duration: Duration) -> Option<SystemTime> {
 		self.0.checked_sub_duration(&duration).map(SystemTime)
@@ -426,10 +429,12 @@ impl Add<Duration> for SystemTime {
 
 	/// # Panics
 	///
-	/// This function may panic if the resulting point in time cannot be represented by the
-	/// underlying data structure. See [`checked_add`] for a version without panic.
+	/// This function may panic if the resulting point in time cannot be
+	/// represented by the underlying data structure. See [`checked_add`] for a
+	/// version without panic.
 	///
-	/// [`checked_add`]: ../../std/time/struct.SystemTime.html#method.checked_add
+	/// [`checked_add`]:
+	/// ../../std/time/struct.SystemTime.html#method.checked_add
 	fn add(self, dur: Duration) -> SystemTime {
 		self.checked_add(dur)
 			.expect("overflow when adding duration to instant")
@@ -491,13 +496,14 @@ impl SystemTimeError {
 	/// Returns the positive duration which represents how far forward the
 	/// second system time was from the first.
 	///
-	/// A `SystemTimeError` is returned from the [`duration_since`] and [`elapsed`]
-	/// methods of [`SystemTime`] whenever the second system time represents a point later
-	/// in time than the `self` of the method call.
+	/// A `SystemTimeError` is returned from the [`duration_since`] and
+	/// [`elapsed`] methods of [`SystemTime`] whenever the second system time
+	/// represents a point later in time than the `self` of the method call.
 	///
-	/// [`duration_since`]: ../../std/time/struct.SystemTime.html#method.duration_since
-	/// [`elapsed`]: ../../std/time/struct.SystemTime.html#method.elapsed
-	/// [`SystemTime`]: ../../std/time/struct.SystemTime.html
+	/// [`duration_since`]:
+	/// ../../std/time/struct.SystemTime.html#method.duration_since [`elapsed`]:
+	/// ../../std/time/struct.SystemTime.html#method.elapsed [`SystemTime`]:
+	/// ../../std/time/struct.SystemTime.html
 	///
 	/// # Examples
 	///

@@ -4,8 +4,8 @@
 //! # Initialization
 //!
 //! To create a new freetype context, instantiate the Library struct as below.
-//! The Library (along with other objects) obeys RAII and is dropped when the struct goes out of
-//! scope.
+//! The Library (along with other objects) obeys RAII and is dropped when the
+//! struct goes out of scope.
 //!
 //! # Example
 //!

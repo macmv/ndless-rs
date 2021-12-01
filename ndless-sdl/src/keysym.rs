@@ -1,6 +1,5 @@
 #![allow(non_upper_case_globals)]
 
-
 pub type SDLKey = cty::c_uint;
 
 pub const SDLK_UNKNOWN: SDLKey = 0;

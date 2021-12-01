@@ -2,8 +2,8 @@ use core::fmt;
 
 /// ## WARNING
 ///
-/// This **will** leak memory without careful planning, as it does not run any destructors!
-/// You need to make sure that all scopes end before calling this!
+/// This **will** leak memory without careful planning, as it does not run any
+/// destructors! You need to make sure that all scopes end before calling this!
 /// You can use
 ///
 /// ```rust
@@ -22,8 +22,8 @@ pub fn abort() -> ! {
 
 /// ## WARNING
 ///
-/// This **will** leak memory without careful planning, as it does not run any destructors!
-/// You need to make sure that all scopes end before calling this!
+/// This **will** leak memory without careful planning, as it does not run any
+/// destructors! You need to make sure that all scopes end before calling this!
 /// You can either use
 ///
 /// ```rust
@@ -40,7 +40,7 @@ pub fn abort() -> ! {
 /// fn main() {
 ///     ndless::process::exit({
 ///         // Main code
-///	        let a = vec![5];
+/// 	        let a = vec![5];
 ///         0
 ///     });
 /// }
