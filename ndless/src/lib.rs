@@ -6,11 +6,9 @@
 //! [book]: https://lights0123.com/ndless-rust/index.html
 #![no_std]
 #![allow(clippy::tabs_in_doc_comments, clippy::needless_doctest_main)]
-#![feature(allocator_api)]
 #![feature(core_intrinsics)]
 #![feature(llvm_asm)]
 #![feature(never_type)]
-#![feature(maybe_uninit_ref)]
 pub extern crate alloc;
 
 pub use bindings::*;
