@@ -10,8 +10,8 @@ edition = "2018"
 readme = "README.md"
 
 [dependencies]
-ndless = "0.8.6"
-ndless-sys = "0.2.0"
+ndless = { version = "0.8.6", path = "../ndless" }
+ndless-sys = { version = "0.2.0", path = "../ndless-sys" }
 cty = "0.2.0"
 
 [features]

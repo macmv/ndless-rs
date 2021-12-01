@@ -16,6 +16,6 @@ edition = "2018"
 bitflags = "1.0.4"
 cty = "0.2.0"
 embedded-freetype-sys = "0.2.0"
-ndless-sys = "0.2.0"
+ndless-sys = { version = "0.2.0", path = "../ndless-sys" }
 cstr_core = { version = "0.1.2", features = ["alloc"] }
 failure = { version = "0.1.5", default-features = false }

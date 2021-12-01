@@ -18,6 +18,6 @@ edition = "2018"
 num = { version = "0.2.0", default-features = false }
 cty = "0.2.1"
 cstr_core = { version = "0.1.2", features = ["alloc"] }
-ndless = "0.8.2"
-ndless-freetype = "0.1.2"
+ndless = { version = "0.8.2", path = "../ndless" }
+ndless-freetype = { version = "0.1.2", path = "../ndless-freetype" }
 unicode-segmentation = "1.6.0"

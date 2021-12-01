@@ -9,7 +9,7 @@ edition = "2018"
 readme = "README.md"
 
 [dependencies]
-ndless = "0.8.6"
+ndless = { version = "0.8.6", path = "../ndless" }
 ignore-result = "0.2.0"
 futures-util = { version = "0.3.5", default-features = false, features = ["alloc", "async-await-macro"] }
 crossbeam-queue = { version = "0.2.1", default-features = false, features = ["alloc"] }

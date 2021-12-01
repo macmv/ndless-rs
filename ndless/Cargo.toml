@@ -13,6 +13,6 @@ readme = "README.md"
 embedded-ffi = { version = "0.1.2", features = ["alloc"] }
 cty = "0.2.0"
 cstr_core = { version = "0.1.2", features = ["alloc"] }
-ndless-sys = "0.2.0"
-ndless-macros = "0.4.0"
-ndless-static-vars = "2.1.0"
+ndless-sys = { version = "0.2.0", path = "../ndless-sys" }
+ndless-macros = { version = "0.4.0", path = "../ndless-macros" }
+ndless-static-vars = { version = "2.1.0", path = "../ndless-static-vars" }
