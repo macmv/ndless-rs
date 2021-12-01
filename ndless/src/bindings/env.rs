@@ -4,7 +4,10 @@
 //! process arguments, the current directory, and various
 //! other important directories.
 
+use alloc::string::String;
+use alloc::string::ToString;
 use alloc::vec::IntoIter;
+use alloc::vec::Vec;
 
 use cstr_core::CStr;
 
@@ -13,7 +16,6 @@ use crate::io::ErrorKind;
 use crate::libc;
 use crate::path::Path;
 use crate::path::PathBuf;
-use crate::prelude::*;
 
 pub type Args = IntoIter<String>;
 

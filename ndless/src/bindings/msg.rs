@@ -1,6 +1,7 @@
 //! # Message boxes
 //! This module contains functions to display message boxes to the user.
 
+use alloc::string::String;
 use core::mem::transmute;
 use core::slice;
 

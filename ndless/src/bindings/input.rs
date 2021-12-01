@@ -3,9 +3,10 @@
 //! This contains functionality to get keys pressed, as well as touchpad
 //! information.
 
+use alloc::vec::Vec;
+
 use crate::alloc::borrow::Borrow;
 use crate::bindings::input::raw_keys::*;
-use crate::prelude::*;
 
 /// Keys available in the Nspire keypad, including the touchpad.
 #[derive(Eq, PartialEq, Debug, Clone, Copy, Hash)]

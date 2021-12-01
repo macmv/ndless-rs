@@ -6,7 +6,7 @@
 //! [book]: https://lights0123.com/ndless-rust/index.html
 #![no_std]
 #![allow(clippy::tabs_in_doc_comments, clippy::needless_doctest_main)]
-#![feature(alloc_prelude, allocator_api)]
+#![feature(allocator_api)]
 #![feature(core_intrinsics)]
 #![feature(llvm_asm)]
 #![feature(never_type)]
@@ -82,7 +82,6 @@ pub mod prelude {
 	//! ```
 	//! to get commonly-used functions.
 	pub use alloc::format;
-	pub use alloc::prelude::v1::*;
 	pub use alloc::vec;
 
 	pub use ndless_macros::entry;
