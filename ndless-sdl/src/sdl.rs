@@ -1,7 +1,8 @@
 use core::str;
 use cstr_core::{CStr, CString};
+use ndless::alloc::string::{String, ToString};
+use ndless::alloc::vec::Vec;
 use ndless::hw::has_colors;
-use ndless::prelude::*;
 
 // Setup linking for all targets.
 #[cfg(target_os = "macos")]

@@ -1,7 +1,8 @@
 use cty::c_int;
 
 use crate::get_error;
-use ndless::prelude::*;
+use ndless::alloc::string::String;
+use ndless::alloc::vec::Vec;
 pub mod ll {
 	#![allow(non_camel_case_types)]
 

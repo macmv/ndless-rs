@@ -1,9 +1,10 @@
 use cty::c_int;
-use ndless::prelude::*;
 
 use crate::get_error;
 use crate::video::ll::SDL_RWFromConstMem;
 use crate::video::Surface;
+use ndless::alloc::string::String;
+use ndless::alloc::vec::Vec;
 
 pub mod ll {
 	#![allow(non_camel_case_types)]

@@ -1,10 +1,11 @@
 use core::mem;
 use core::ptr;
 use core::slice;
+use ndless::alloc::string::String;
+use ndless::alloc::vec::Vec;
 
 use cstr_core::CString;
 use cty::c_int;
-use ndless::prelude::*;
 
 use crate::get_error;
 use crate::Rect;

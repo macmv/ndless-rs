@@ -2,7 +2,7 @@ use core::mem;
 use core::ptr;
 use core::str;
 use cstr_core::{CStr, CString};
-use ndless::prelude::*;
+use ndless::alloc::string::{String, ToString};
 
 pub mod ll {
 	#![allow(non_camel_case_types)]

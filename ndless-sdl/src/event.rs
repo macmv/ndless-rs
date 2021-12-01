@@ -4,7 +4,8 @@ use core::str;
 
 use cstr_core::CStr;
 use cty::*;
-use ndless::prelude::*;
+use ndless::alloc::string::{String, ToString};
+use ndless::alloc::vec::Vec;
 use num::FromPrimitive;
 
 pub mod ll {

@@ -1,4 +1,5 @@
 pub mod freetype {
+	use ndless::alloc::string::{String, ToString};
 	use ndless::prelude::*;
 	use unicode_segmentation::UnicodeSegmentation;
 

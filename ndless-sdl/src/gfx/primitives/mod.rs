@@ -1,3 +1,4 @@
+use ndless::alloc::vec::Vec;
 use ndless::prelude::*;
 
 pub use crate::video::{Color, Surface};
