@@ -2,6 +2,8 @@
 //! This module contains functions that configure miscellaneous settings used in
 //! ndless.
 
+use core::arch::*;
+
 pub fn assert_ndless_rev(required_version: u32) {
 	unsafe { ndless_sys::assert_ndless_rev(required_version) }
 }
@@ -16,7 +18,7 @@ pub fn is_startup() -> bool {
 /// an actual calculator.
 pub fn bkpt() {
 	if cfg!(debug_assertions) {
-		unsafe { llvm_asm!(".long 0xE1212374") }
+		unsafe { asm!(".long 0xE1212374") }
 	}
 }
 
